@@ -1,0 +1,72 @@
+docker- day-2
+
+sudo -i
+sudo apt-get update
+
+sudo apt install docker.io -y
+
+docker -v
+docker pull nginx
+
+docker images   ---->it will show images that downloaded
+
+docker run nginx      -> images will become container but ip will not load bcz port is not mapped
+
+
+docker run -p 80:80 nginx    -----> ip can work not port is mapped .
+
+docker ps -a
+
+docker run -d --name aazam -p 80:80 nginx
+
+
+docker rm  -f 43a75fee9cf5  --->it will running container with forcefully.
+
+
+dont keep any data in the container
+
+volume ---> is basically a persistent or logical space
+
+mkdir -p ~/docker-nginx/html    created a folder 
+cd ~/docker-nginx/html         gone into the folder
+vi index.html                  created a fie inside the folder.     
+
+docker run --name docker-nginx -p 80:80 -d -v ~/docker-nginx/html:/usr/share/nginx/html nginx
+
+docker run        --------------->nginx image will become container
+--name docker-nginx          --> container name
+-p 80:80          ----------->port mapping
+-d                  detached 
+-v ~/docker-nginx/html:/usr/share/nginx/html         ----->volume mapping from one locatuon to another location
+nginx
+
+
+
+docker run -it ubuntu        i will go directly inside the container
+apt-get update              it will update container package
+apt install python
+apt install git
+
+
+docker start con-ID
+
+
+
+my container is running now need to inside the container
+
+
+docker exec -it 4fa537909af5 /bin/bash
+
+
+ubuntu container i dont want to go inside the container but i want to run the command.
+
+docker run alpine date
+docker run --rm alpine date
+
+docker stats -------->statics will visible for cpu usage of conainer//
+
+for i in {1..30}; do docker run -d --rm alpine sleep 1000;
+
+docker run -it -d -p 8080:8080 jenkins/jenkins:latest   --->it will install the latest jenkins and become a container.
+
+docker ps -aq |wc -l    
